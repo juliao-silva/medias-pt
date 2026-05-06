@@ -1,17 +1,48 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
-const { title } = Astro.props;
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Médias — Notas de Acesso à Universidade',
+  description = 'Consulta as notas de acesso a todos os cursos universitários em Portugal, de 2016 a 2025. Dados oficiais do DGES.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://medias.pt');
 ---
 
 <html lang="pt">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:image" content="https://medias.pt/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://medias.pt/og-image.png" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <slot name="head" />
   </head>
   <body class="bg-[#f5f0e8] text-[#0e0e0e] font-sans">
     <slot />
+    <Analytics />
   </body>
 </html>
