@@ -1,0 +1,17 @@
+---
+import '../styles/global.css';
+const { title } = Astro.props;
+---
+
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#f5f0e8] text-[#0e0e0e] font-sans">
+    <slot />
+  </body>
+</html>

@@ -9,10 +9,10 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
 <Layout title="Médias — Notas de Acesso à Universidade">
   <!-- NAV -->
   <nav
-    class="flex items-center justify-between px-6 md:px-12 py-4 md:py-5 border-b border-[#d4cdb8] sticky top-0 bg-[#f5f0e8] z-50"
+    class="flex items-center justify-between px-6 md:px-12 py-4 md:py-5 border-b border-[#d4cdb8] sticky top-0 bg-white z-50"
   >
     <div
-      class="font-display text-3xl font-black tracking-tight flex items-center gap-2"
+      class="font-display text-3xl font-black tracking-tight flex items-center gap-2 underline" style="font-family: 'Playfair Display', serif"
     >
       <div class="w-2 h-2 rounded-full bg-[#1e3a5f]"></div>
       <div><em><span class="text-[#1e3a5f]">m</span>édias.pt</em></div>
@@ -20,7 +20,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
     <a
       href="#sobre"
       onclick="event.preventDefault(); document.getElementById('sobre').scrollIntoView({ behavior: 'smooth' })"
-      class="font-mono text-xs tracking-widest uppercase border border-[#d4cdb8] px-4 py-2 text-[#0e0e0e] font-bold hover:bg-[#1e3a5f] hover:text-white hover:border-[#1e3a5f] transition-colors"
+      class="font-mono text-xs tracking-widest uppercase border border-[#d4cdb8] px-4 py-2 text-black font-bold hover:bg-[#1e3a5f] hover:text-white hover:border-[#1e3a5f] transition-colors"
     >Sobre</a>
   </nav>
 
@@ -38,26 +38,26 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
       <h1
         class="font-display text-4xl md:text-5xl font-black leading-tight tracking-tighter mb-5"
       >
-        <span class="text-[40px] md:text-[52px]"><em><span class="text-[#1e3a5f]">m</span>édias.pt</em></span><br /><span class="text-4xl md:text-[2.75rem]">Encontra o teu curso ideal</span>
+        <span class="text-[40px] md:text-[52px] underline" style="font-family: 'Playfair Display', serif"><em><span class="text-[#1e3a5f]">m</span>édias.pt</em></span><br /><span class="text-4xl md:text-[2.75rem]">Encontra o teu curso ideal</span>
       </h1>
-      <p class="text-[#7a7060] text-[19px] leading-relaxed mb-8 max-w-md">
+      <p class="text-[rgba(60,60,67,0.6)] text-[19px] leading-relaxed mb-8 max-w-md">
         Notas de entrada de todos os cursos superiores em Portugal. Histórico
         completo, tendências e probabilidades de acesso — tudo num só lugar.
       </p>
       <div class="flex gap-8">
         <div>
           <div class="font-display text-3xl font-bold">1000+</div>
-          <div class="text-xs text-[#7a7060] font-medium mt-1">Cursos</div>
+          <div class="text-xs text-[rgba(60,60,67,0.6)] font-medium mt-1">Cursos</div>
         </div>
         <div>
           <div class="font-display text-3xl font-bold">120+</div>
-          <div class="text-xs text-[#7a7060] font-medium mt-1">
+          <div class="text-xs text-[rgba(60,60,67,0.6)] font-medium mt-1">
             Instituições
           </div>
         </div>
         <div>
           <div class="font-display text-3xl font-bold">10 anos</div>
-          <div class="text-xs text-[#7a7060] font-medium mt-1">
+          <div class="text-xs text-[rgba(60,60,67,0.6)] font-medium mt-1">
             de histórico
           </div>
         </div>
@@ -66,7 +66,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
 
     <!-- RIGHT: SEARCH BOX -->
     <div
-      class="bg-[#faf7f2] border border-[#d4cdb8] p-6 md:p-8"
+      class="bg-white border border-[#d4cdb8] p-6 md:p-8"
       style="box-shadow: 4px 4px 0px #d4cdb8"
     >
       <h3 class="font-display text-lg font-bold mb-5">Pesquisar cursos</h3>
@@ -74,13 +74,13 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
         id="searchInput"
         type="text"
         placeholder="Ex: Engenharia Informática, Medicina..."
-        class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-base outline-none focus:border-[#1e3a5f] transition-colors mb-3"
+        class="w-full px-4 py-3 border border-[#d4cdb8] bg-white text-base outline-none focus:border-[#1e3a5f] transition-colors mb-3"
       />
       <div class="grid grid-cols-2 gap-3 mb-4">
         <div class="relative">
           <select
             id="filterCidade"
-            class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-base outline-none focus:border-[#1e3a5f] transition-colors cursor-pointer appearance-none pr-8"
+            class="w-full px-4 py-3 border border-[#d4cdb8] bg-white text-base outline-none focus:border-[#1e3a5f] transition-colors cursor-pointer appearance-none pr-8"
           >
             <option value="">Universidade (todas)</option>
             <option>Universidade de Lisboa</option>
@@ -97,14 +97,14 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             <option>Universidade de Trás-os-Montes e Alto Douro</option>
           </select>
           <span
-            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7060]"
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[rgba(60,60,67,0.6)]"
             >↓</span
           >
         </div>
         <div class="relative">
           <select
             id="filterGrau"
-            class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-base outline-none focus:border-[#1e3a5f] transition-colors cursor-pointer appearance-none pr-8"
+            class="w-full px-4 py-3 border border-[#d4cdb8] bg-white text-base outline-none focus:border-[#1e3a5f] transition-colors cursor-pointer appearance-none pr-8"
           >
             <option value="">Grau (todos)</option>
             <option value="licenciatura">Licenciatura</option>
@@ -112,13 +112,13 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             <option value="preparatório">Preparatório</option>
           </select>
           <span
-            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7060]"
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[rgba(60,60,67,0.6)]"
             >↓</span
           >
         </div>
       </div>
       <div class="mb-4">
-        <div class="flex justify-between text-xs text-[#7a7060] mb-2">
+        <div class="flex justify-between text-xs text-[rgba(60,60,67,0.6)] mb-2">
           <span>Nota máxima</span>
           <span id="gradeDisplay" class="font-mono text-[#1e3a5f] font-medium"
             >20,0</span
@@ -146,7 +146,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
   <!-- DIVIDER -->
   <div id="resultsDivider" class="max-w-6xl mx-auto px-6 md:px-12 flex items-center gap-4 mb-8">
     <div class="flex-1 h-px bg-[#d4cdb8]"></div>
-    <span class="font-display text-sm text-[#7a7060] italic">Resultados</span>
+    <span class="font-display text-sm text-[rgba(60,60,67,0.6)] italic">Resultados</span>
     <div class="flex-1 h-px bg-[#d4cdb8]"></div>
   </div>
 
@@ -155,19 +155,19 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
     <div class="flex justify-between items-center mb-6">
       <span
         id="resultsCount"
-        class="font-mono text-xs text-[#7a7060] tracking-widest uppercase"
+        class="font-mono text-xs text-[rgba(60,60,67,0.6)] tracking-widest uppercase"
       ></span>
       <div class="flex gap-2">
         <button
-          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[rgba(60,60,67,0.6)]"
           data-sort="grade">Nota <span class="sort-arrow-grade">↓</span></button
         >
         <button
-          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[rgba(60,60,67,0.6)]"
           data-sort="az">A–Z <span class="sort-arrow-az">↓</span></button
         >
         <button
-          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[rgba(60,60,67,0.6)]"
           data-sort="trend"
           >Tendência <span class="sort-arrow-trend">↓</span></button
         >
@@ -220,7 +220,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
           return (
             <a
             href={`/curso/${courseSlug(course.curso, course.universidade)}`}
-            class="course-card bg-[#faf7f2] p-6 cursor-pointer relative overflow-hidden flex flex-col border-b border-r border-[#d4cdb8]"              data-curso={course.curso}
+            class="course-card bg-white p-6 cursor-pointer relative overflow-hidden flex flex-col border-b border-r border-[#d4cdb8]"              data-curso={course.curso}
               data-uni={course.universidade}
               data-nota={course.notas[2025]}
               data-grau={course.grau}
@@ -248,7 +248,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
               <div class="mt-auto">
                 <div class="flex items-end justify-between">
                   <div>
-                    <div class="text-xs text-[#7a7060] mb-1">
+                    <div class="text-xs text-[rgba(60,60,67,0.6)] mb-1">
                       Último colocado 1.ª fase 2025
                     </div>
                     <div
@@ -267,7 +267,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
                     </div>
                   )}
                 </div>
-                <div class="font-mono text-[10px] text-[#7a7060] mt-3 pt-3 border-t border-[#d4cdb8]">
+                <div class="font-mono text-[10px] text-[rgba(60,60,67,0.6)] mt-3 pt-3 border-t border-[#d4cdb8]">
                   {course.vagas} vagas
                 </div>
               </div>
@@ -281,17 +281,17 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
   <!-- SOBRE -->
   <section id="sobre" class="max-w-6xl mx-auto px-6 md:px-12 py-16 border-t border-[#d4cdb8]">
     <h2 class="font-display text-2xl font-black mb-6">O que é o medias.pt?</h2>
-    <p class="text-[#7a7060] text-[17px] leading-relaxed max-w-3xl mb-4">
-      O medias.pt permite consultar as <strong class="text-[#0e0e0e]">médias de entrada</strong> de todos os cursos do ensino superior público em Portugal, desde 2016 até 2025. Os dados são retirados diretamente dos ficheiros oficiais da <strong class="text-[#0e0e0e]">DGES</strong> (Direção-Geral do Ensino Superior) e correspondem à <strong class="text-[#0e0e0e]">Fase 1 do Concurso Nacional de Acesso</strong>.
+    <p class="text-[rgba(60,60,67,0.6)] text-[17px] leading-relaxed max-w-3xl mb-4">
+      O medias.pt permite consultar as <strong class="text-black">médias de entrada</strong> de todos os cursos do ensino superior público em Portugal, desde 2016 até 2025. Os dados são retirados diretamente dos ficheiros oficiais da <strong class="text-black">DGES</strong> (Direção-Geral do Ensino Superior) e correspondem à <strong class="text-black">Fase 1 do Concurso Nacional de Acesso</strong>.
     </p>
-    <p class="text-[#7a7060] text-[17px] leading-relaxed max-w-3xl mb-4">
-      Pesquisa por curso ou universidade e vê a evolução das <strong class="text-[#0e0e0e]">notas de acesso</strong>, <strong class="text-[#0e0e0e]">notas mínimas de entrada</strong> e <strong class="text-[#0e0e0e]">últimos colocados</strong> ao longo dos anos. Útil se estás a planear a tua <strong class="text-[#0e0e0e]">candidatura ao ensino superior</strong>, a escolher um curso, ou só queres perceber como as <strong class="text-[#0e0e0e]">notas de acesso à universidade</strong> têm mudado.
+    <p class="text-[rgba(60,60,67,0.6)] text-[17px] leading-relaxed max-w-3xl mb-4">
+      Pesquisa por curso ou universidade e vê a evolução das <strong class="text-black">notas de acesso</strong>, <strong class="text-black">notas mínimas de entrada</strong> e <strong class="text-black">últimos colocados</strong> ao longo dos anos. Útil se estás a planear a tua <strong class="text-black">candidatura ao ensino superior</strong>, a escolher um curso, ou só queres perceber como as <strong class="text-black">notas de acesso à universidade</strong> têm mudado.
     </p>
-    <p class="text-[#7a7060] text-[17px] leading-relaxed max-w-3xl">
-      Os dados cobrem <strong class="text-[#0e0e0e]">licenciaturas</strong> e <strong class="text-[#0e0e0e]">mestrados integrados</strong> de universidades como a <strong class="text-[#0e0e0e]">Universidade de Lisboa, Universidade do Porto, Universidade de Coimbra, NOVA, IST, FEUP, Universidade do Minho, Universidade de Aveiro</strong>, e muitas outras — incluindo <strong class="text-[#0e0e0e]">medicina, direito, engenharia, psicologia, arquitetura</strong> e todos os outros cursos do <strong class="text-[#0e0e0e]">concurso nacional</strong>.
+    <p class="text-[rgba(60,60,67,0.6)] text-[17px] leading-relaxed max-w-3xl">
+      Os dados cobrem <strong class="text-black">licenciaturas</strong> e <strong class="text-black">mestrados integrados</strong> de universidades como a <strong class="text-black">Universidade de Lisboa, Universidade do Porto, Universidade de Coimbra, NOVA, IST, FEUP, Universidade do Minho, Universidade de Aveiro</strong>, e muitas outras — incluindo <strong class="text-black">medicina, direito, engenharia, psicologia, arquitetura</strong> e todos os outros cursos do <strong class="text-black">concurso nacional</strong>.
     </p>
-    <p class="text-[#7a7060] text-[17px] leading-relaxed max-w-3xl mt-8 pt-8 border-t border-[#d4cdb8] underline underline-offset-2">
-      Desenvolvido por <strong class="text-[#0e0e0e]">Julião Silva</strong> — Contacto: <a href="mailto:juliaoagostinhodasilva@gmail.com" class="text-[#1e3a5f] hover:text-[#152a45] transition-colors">juliaoagostinhodasilva@gmail.com</a>.
+    <p class="text-[rgba(60,60,67,0.6)] text-[17px] leading-relaxed max-w-3xl mt-8 pt-8 border-t border-[#d4cdb8] underline underline-offset-2">
+      Desenvolvido por <strong class="text-black">Julião Silva</strong> — Contacto: <a href="mailto:juliaoagostinhodasilva@gmail.com" class="text-[#1e3a5f] hover:text-[#152a45] transition-colors">juliaoagostinhodasilva@gmail.com</a>.
     </p>
   </section>
 
@@ -299,7 +299,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
   <footer
     class="border-t border-[#d4cdb8] px-6 md:px-12 py-6 flex justify-between items-center max-w-6xl mx-auto"
   >
-    <p class="text-xs text-[#7a7060]">
+    <p class="text-xs text-[rgba(60,60,67,0.6)]">
       Dados: DGES — Direção-Geral do Ensino Superior · Atualizado em 2025 ·
       Desenvolvido por Julião Silva
     </p>
@@ -316,13 +316,13 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
   >
     <div
       id="detailPanel"
-      class="absolute right-0 top-0 w-full md:w-[480px] h-full bg-[#f5f0e8] overflow-y-auto"
+      class="absolute right-0 top-0 w-full md:w-[480px] h-full bg-white overflow-y-auto"
       style="box-shadow: -8px 0 40px rgba(0,0,0,0.15)"
     >
       <div class="p-6 md:p-8 border-b border-[#d4cdb8] relative">
         <button
           onclick="closeDetail()"
-          class="absolute top-6 right-6 w-8 h-8 border border-[#d4cdb8] flex items-center justify-center text-[#7a7060] hover:bg-[#0e0e0e] hover:text-[#f5f0e8] hover:border-[#0e0e0e] transition-colors"
+          class="absolute top-6 right-6 w-8 h-8 border border-[#d4cdb8] flex items-center justify-center text-[rgba(60,60,67,0.6)] hover:bg-[#0e0e0e] hover:text-[#f5f0e8] hover:border-[#0e0e0e] transition-colors"
           >✕</button
         >
         <div
@@ -335,10 +335,10 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
           class="font-display text-2xl font-black leading-tight mb-2"
         >
         </div>
-        <div id="d-uni" class="text-sm text-[#7a7060] mb-6"></div>
+        <div id="d-uni" class="text-sm text-[rgba(60,60,67,0.6)] mb-6"></div>
         <div class="flex gap-6">
           <div>
-            <div class="text-xs text-[#7a7060] mb-1">Nota 2025</div>
+            <div class="text-xs text-[rgba(60,60,67,0.6)] mb-1">Nota 2025</div>
             <div
               id="d-grade"
               class="font-display text-4xl font-black text-[#1e3a5f]"
@@ -346,7 +346,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             </div>
           </div>
           <div>
-            <div class="text-xs text-[#7a7060] mb-1">Mínimo</div>
+            <div class="text-xs text-[rgba(60,60,67,0.6)] mb-1">Mínimo</div>
             <div
               id="d-min"
               class="font-display text-4xl font-black text-[#1a6b3c]"
@@ -354,10 +354,10 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             </div>
           </div>
           <div>
-            <div class="text-xs text-[#7a7060] mb-1">Vagas</div>
+            <div class="text-xs text-[rgba(60,60,67,0.6)] mb-1">Vagas</div>
             <div
               id="d-vagas"
-              class="font-display text-4xl font-black text-[#0e0e0e]"
+              class="font-display text-4xl font-black text-black"
             >
             </div>
           </div>
@@ -367,7 +367,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
       <!-- CHART -->
       <div class="p-6 md:p-8 border-b border-[#d4cdb8]">
         <div
-          class="font-mono text-[10px] tracking-widest text-[#7a7060] uppercase mb-5"
+          class="font-mono text-[10px] tracking-widest text-[rgba(60,60,67,0.6)] uppercase mb-5"
         >
           Histórico de notas
         </div>
@@ -381,7 +381,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
         <h4 class="font-display text-lg font-bold mb-2">
           Qual a tua probabilidade de entrada?
         </h4>
-        <p class="text-sm text-[#b0a898] leading-relaxed mb-4">
+        <p class="text-sm text-[rgba(60,60,67,0.3)] leading-relaxed mb-4">
           Insere a tua nota e calcula as tuas hipóteses com base no histórico
           dos últimos 10 anos.
         </p>
@@ -391,7 +391,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             type="text"
             inputmode="decimal"
             placeholder="Ex: 15,8"
-            class="flex-1 px-4 py-2.5 bg-[#1a1a1a] border border-[#333] text-[#f5f0e8] outline-none focus:border-[#1e3a5f] transition-colors placeholder-[#7a6e62]"
+            class="flex-1 px-4 py-2.5 bg-[#1a1a1a] border border-[#333] text-[#f5f0e8] outline-none focus:border-[#1e3a5f] transition-colors placeholder-[rgba(60,60,67,0.25)]"
           />
           <button
             onclick="calcProb()"
@@ -404,7 +404,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             <div id="probPercent" class="font-display text-5xl font-black text-[#1e3a5f]"></div>
             <div>
               <div class="text-sm font-medium">probabilidade de entrada</div>
-              <div id="probDetail" class="text-xs text-[#b0a898] mt-1"></div>
+              <div id="probDetail" class="text-xs text-[rgba(60,60,67,0.3)] mt-1"></div>
             </div>
           </div>
           <div class="mt-4 h-1.5 bg-[#333] overflow-hidden">
@@ -424,12 +424,12 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
         card.addEventListener("mouseenter", () => {
           (card.querySelector(".card-underline") as HTMLElement).style.width =
             "100%";
-          (card as HTMLElement).style.background = "#f0ebe0";
+          (card as HTMLElement).style.background = "#f5f5f5";
         });
         card.addEventListener("mouseleave", () => {
           (card.querySelector(".card-underline") as HTMLElement).style.width =
             "0";
-          (card as HTMLElement).style.background = "#faf7f2";
+          (card as HTMLElement).style.background = "#ffffff";
         });
       });
     } else {
@@ -555,7 +555,7 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             "text-[#f5f0e8]",
             "border-[#0e0e0e]",
           );
-          b.classList.add("text-[#7a7060]");
+          b.classList.add("text-[rgba(60,60,67,0.6)]");
         });
         btn.classList.add("bg-[#0e0e0e]", "text-[#f5f0e8]", "border-[#0e0e0e]");
 
@@ -643,9 +643,9 @@ const displayCourses = courses.filter((c) => c.notas[2025]);
             Math.round(((vals[i] - minVal) / (maxVal - minVal + 0.5)) * 80) +
             10;
           return `<div class="flex-1 flex flex-col items-center gap-1">
-          <div class="font-mono text-[9px] text-[#7a7060]">${vals[i].toFixed(1).replace(".", ",")}</div>
+          <div class="font-mono text-[9px] text-[rgba(60,60,67,0.6)]">${vals[i].toFixed(1).replace(".", ",")}</div>
           <div class="w-full bg-[#d4cdb8] hover:bg-[#1e3a5f] transition-colors" style="height:${h}px"></div>
-          <div class="font-mono text-[9px] text-[#7a7060]">'${y.slice(2)}</div>
+          <div class="font-mono text-[9px] text-[rgba(60,60,67,0.6)]">'${y.slice(2)}</div>
         </div>`;
         })
         .join("");

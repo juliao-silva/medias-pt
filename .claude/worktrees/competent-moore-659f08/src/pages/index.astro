@@ -1,0 +1,595 @@
+---
+import Layout from "../layouts/Layout.astro";
+import courses from "../data/courses.json";
+
+const displayCourses = courses.filter((c) => c.notas[2025]);
+---
+
+<Layout title="Médias — Notas de Acesso à Universidade">
+  <!-- NAV -->
+  <nav
+    class="flex items-center justify-between px-6 md:px-12 py-4 md:py-5 border-b border-[#d4cdb8] sticky top-0 bg-[#f5f0e8] z-50"
+  >
+    <div
+      class="font-display text-xl font-black tracking-tight flex items-center gap-2"
+    >
+      <div class="w-2 h-2 rounded-full bg-[#c8410a]"></div>
+      <div><span class="text-[#c8410a]">M</span>édias</div>
+    </div>
+    <ul class="hidden md:flex gap-8 list-none items-center">
+      <li>
+        <a
+          href="#"
+          class="text-sm bg-[#0e0e0e] text-[#f5f0e8] px-5 py-2 hover:bg-[#c8410a] transition-colors font-semibold"
+          >Calculadora →</a
+        >
+      </li>
+    </ul>
+    <a
+      href="#"
+      class="md:hidden text-sm bg-[#0e0e0e] text-[#f5f0e8] px-4 py-2 font-semibold"
+      >Calculadora →</a
+    >
+  </nav>
+
+  <!-- HERO -->
+  <section
+    class="max-w-6xl mx-auto px-6 md:px-12 py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center"
+  >
+    <!-- LEFT -->
+    <div>
+      <p
+        class="font-mono text-xs tracking-widest text-[#c8410a] uppercase mb-4"
+      >
+        Acesso ao Ensino Superior · Portugal
+      </p>
+      <h1
+        class="font-display text-4xl md:text-5xl font-black leading-tight tracking-tighter mb-5"
+      >
+        Encontra o teu <em class="text-[#c8410a]">curso</em> ideal
+      </h1>
+      <p class="text-[#7a7060] text-base leading-relaxed mb-8 max-w-md">
+        Notas de entrada de todos os cursos superiores em Portugal. Histórico
+        completo, tendências e probabilidades de acesso — tudo num só lugar.
+      </p>
+      <div class="flex gap-8">
+        <div>
+          <div class="font-display text-3xl font-bold">1100+</div>
+          <div class="text-xs text-[#7a7060] font-medium mt-1">Cursos</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl font-bold">120+</div>
+          <div class="text-xs text-[#7a7060] font-medium mt-1">
+            Instituições
+          </div>
+        </div>
+        <div>
+          <div class="font-display text-3xl font-bold">10 anos</div>
+          <div class="text-xs text-[#7a7060] font-medium mt-1">
+            de histórico
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: SEARCH BOX -->
+    <div
+      class="bg-[#faf7f2] border border-[#d4cdb8] p-6 md:p-8"
+      style="box-shadow: 4px 4px 0px #d4cdb8"
+    >
+      <h3 class="font-display text-lg font-bold mb-5">Pesquisar cursos</h3>
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Ex: Engenharia Informática, Medicina..."
+        class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-sm outline-none focus:border-[#c8410a] transition-colors mb-3"
+      />
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="relative">
+          <select
+            id="filterCidade"
+            class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-sm outline-none focus:border-[#c8410a] transition-colors cursor-pointer appearance-none pr-8"
+          >
+            <option value="">Universidade (todas)</option>
+            <option>Universidade de Lisboa</option>
+            <option>Universidade Nova de Lisboa</option>
+            <option>Universidade do Porto</option>
+            <option>Universidade de Coimbra</option>
+            <option>Universidade do Minho</option>
+            <option>Universidade de Aveiro</option>
+            <option>Universidade do Algarve</option>
+            <option>Universidade de Évora</option>
+            <option>Universidade dos Açores</option>
+            <option>Universidade da Madeira</option>
+            <option>Universidade da Beira Interior</option>
+            <option>Universidade de Trás-os-Montes e Alto Douro</option>
+          </select>
+          <span
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7060]"
+            >↓</span
+          >
+        </div>
+        <div class="relative">
+          <select
+            id="filterGrau"
+            class="w-full px-4 py-3 border border-[#d4cdb8] bg-[#f5f0e8] text-sm outline-none focus:border-[#c8410a] transition-colors cursor-pointer appearance-none pr-8"
+          >
+            <option value="">Grau (todos)</option>
+            <option value="licenciatura">Licenciatura</option>
+            <option value="mestrado integrado">Mestrado Integrado</option>
+            <option value="preparatório">Preparatório</option>
+          </select>
+          <span
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#7a7060]"
+            >↓</span
+          >
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="flex justify-between text-xs text-[#7a7060] mb-2">
+          <span>Nota máxima</span>
+          <span id="gradeDisplay" class="font-mono text-[#c8410a] font-medium"
+            >20,0</span
+          >
+        </div>
+        <input
+          id="gradeRange"
+          type="range"
+          min="100"
+          max="200"
+          step="5"
+          value="200"
+          class="w-full accent-[#c8410a]"
+        />
+      </div>
+      <button
+        id="searchBtn"
+        class="w-full py-3 bg-[#c8410a] text-white text-sm font-semibold hover:bg-[#a8340a] transition-colors"
+      >
+        Pesquisar cursos →
+      </button>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="max-w-6xl mx-auto px-6 md:px-12 flex items-center gap-4 mb-8">
+    <div class="flex-1 h-px bg-[#d4cdb8]"></div>
+    <span class="font-display text-sm text-[#7a7060] italic">Resultados</span>
+    <div class="flex-1 h-px bg-[#d4cdb8]"></div>
+  </div>
+
+  <!-- RESULTS -->
+  <section class="max-w-6xl mx-auto px-6 md:px-12 pb-20">
+    <div class="flex justify-between items-center mb-6">
+      <span
+        id="resultsCount"
+        class="font-mono text-xs text-[#7a7060] tracking-widest uppercase"
+      ></span>
+      <div class="flex gap-2">
+        <button
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          data-sort="grade">Nota <span class="sort-arrow-grade">↓</span></button
+        >
+        <button
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          data-sort="az">A–Z <span class="sort-arrow-az">↓</span></button
+        >
+        <button
+          class="sort-btn px-3 py-1.5 border border-[#d4cdb8] text-xs font-medium text-[#7a7060]"
+          data-sort="trend"
+          >Tendência <span class="sort-arrow-trend">↓</span></button
+        >
+      </div>
+    </div>
+
+    <div
+      id="courseGrid"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-transparent border border-[#d4cdb8]"
+    >
+      {
+        displayCourses.map((course) => {
+          const nota = course.notas[2025] / 10;
+          const notaAnterior = course.notas[2024]
+            ? course.notas[2024] / 10
+            : null;
+          const diff = notaAnterior ? (nota - notaAnterior).toFixed(1) : null;
+          const gradeColor =
+            nota >= 17
+              ? "#b91c1c"
+              : nota >= 15
+                ? "#ea580c"
+                : nota >= 14
+                  ? "#e6a817"
+                  : "#1a6b3c";
+          const trendColor =
+            diff === null
+              ? "#7a7060"
+              : parseFloat(diff) > 0
+                ? "#b83232"
+                : parseFloat(diff) < 0
+                  ? "#1a6b3c"
+                  : "#7a7060";
+          const trendBg =
+            diff === null
+              ? "#f0ede6"
+              : parseFloat(diff) > 0
+                ? "#fde8e8"
+                : parseFloat(diff) < 0
+                  ? "#e8f5ee"
+                  : "#f0ede6";
+          const trendLabel =
+            diff === null
+              ? "—"
+              : parseFloat(diff) > 0
+                ? `↑ +${diff}`
+                : parseFloat(diff) < 0
+                  ? `↓ ${diff}`
+                  : "— 0,0";
+          return (
+            <div
+            class="course-card bg-[#faf7f2] p-6 cursor-pointer relative overflow-hidden flex flex-col border-b border-r border-[#d4cdb8]"              data-curso={course.curso}
+              data-uni={course.universidade}
+              data-nota={course.notas[2025]}
+              data-grau={course.grau}
+              data-diff={diff ?? "0"}
+              onclick={`openDetail(${JSON.stringify(JSON.stringify(course))})`}
+            >
+              <div class="card-underline absolute bottom-0 left-0 h-0.5 bg-[#c8410a] w-0 transition-all duration-300" />
+              <div class="font-mono text-[10px] tracking-widest text-[#c8410a] uppercase mb-2">
+                <span class="font-bold">
+                  {course.universidade.split(" - ")[0].trim()}
+                </span>
+                {course.universidade.includes(" - ") && (
+                  <span class="block font-normal">
+                    {course.universidade
+                      .split(" - ")
+                      .slice(1)
+                      .join(" - ")
+                      .trim()}
+                  </span>
+                )}
+              </div>
+              <div class="font-display text-lg font-bold leading-tight mb-1">
+                {course.curso}
+              </div>
+              <div class="mt-auto">
+                <div class="flex items-end justify-between">
+                  <div>
+                    <div class="text-xs text-[#7a7060] mb-1">
+                      Nota 1.ª fase 2025
+                    </div>
+                    <div
+                      class="font-display text-4xl font-black"
+                      style={`color: ${gradeColor}`}
+                    >
+                      {nota.toFixed(1).replace(".", ",")}
+                    </div>
+                  </div>
+                  {diff !== null && (
+                    <div
+                      class="flex items-center gap-1 font-mono text-xs font-medium px-2 py-1"
+                      style={`background: ${trendBg}; color: ${trendColor}`}
+                    >
+                      {trendLabel}
+                    </div>
+                  )}
+                </div>
+                <div class="font-mono text-[10px] text-[#7a7060] mt-3 pt-3 border-t border-[#d4cdb8]">
+                  {course.vagas} vagas
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer
+    class="border-t border-[#d4cdb8] px-6 md:px-12 py-6 flex justify-between items-center max-w-6xl mx-auto"
+  >
+    <p class="text-xs text-[#7a7060]">
+      Dados: DGES — Direção-Geral do Ensino Superior · Atualizado em 2025 ·
+      Desenvolvido por Julião Silva
+    </p>
+    <div class="font-display text-base font-black">
+      <span class="text-[#c8410a]">M</span>édias
+    </div>
+  </footer>
+
+  <!-- DETAIL PANEL -->
+  <div
+    id="detailOverlay"
+    class="hidden fixed inset-0 z-50"
+    style="background: rgba(14,14,14,0.5); backdrop-filter: blur(2px)"
+  >
+    <div
+      id="detailPanel"
+      class="absolute right-0 top-0 w-full md:w-[480px] h-full bg-[#f5f0e8] overflow-y-auto"
+      style="box-shadow: -8px 0 40px rgba(0,0,0,0.15)"
+    >
+      <div class="p-6 md:p-8 border-b border-[#d4cdb8] relative">
+        <button
+          onclick="closeDetail()"
+          class="absolute top-6 right-6 w-8 h-8 border border-[#d4cdb8] flex items-center justify-center text-[#7a7060] hover:bg-[#0e0e0e] hover:text-[#f5f0e8] hover:border-[#0e0e0e] transition-colors"
+          >✕</button
+        >
+        <div
+          id="d-area"
+          class="font-mono text-[10px] tracking-widest text-[#c8410a] uppercase mb-2"
+        >
+        </div>
+        <div
+          id="d-title"
+          class="font-display text-2xl font-black leading-tight mb-2"
+        >
+        </div>
+        <div id="d-uni" class="text-sm text-[#7a7060] mb-6"></div>
+        <div class="flex gap-6">
+          <div>
+            <div class="text-xs text-[#7a7060] mb-1">Nota 2025</div>
+            <div
+              id="d-grade"
+              class="font-display text-4xl font-black text-[#c8410a]"
+            >
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-[#7a7060] mb-1">Mínimo</div>
+            <div
+              id="d-min"
+              class="font-display text-4xl font-black text-[#1a6b3c]"
+            >
+            </div>
+          </div>
+          <div>
+            <div class="text-xs text-[#7a7060] mb-1">Vagas</div>
+            <div
+              id="d-vagas"
+              class="font-display text-4xl font-black text-[#0e0e0e]"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="p-6 md:p-8 border-b border-[#d4cdb8]">
+        <div
+          class="font-mono text-[10px] tracking-widest text-[#7a7060] uppercase mb-5"
+        >
+          Histórico de notas
+        </div>
+        <div id="chartContainer" class="flex items-end gap-2 h-24"></div>
+      </div>
+
+      <!-- PROB TEASER -->
+      <div
+        class="m-6 md:m-8 bg-[#0e0e0e] text-[#f5f0e8] p-6 relative overflow-hidden"
+      >
+        <div
+          class="absolute right-4 top-1/2 -translate-y-1/2 font-display text-8xl font-black opacity-[0.06]"
+        >
+          ?
+        </div>
+        <h4 class="font-display text-lg font-bold mb-2">
+          Qual a tua probabilidade de entrada?
+        </h4>
+        <p class="text-sm text-[#b0a898] leading-relaxed mb-4">
+          Insere a tua nota e calcula as tuas hipóteses com base no histórico
+          dos últimos 10 anos.
+        </p>
+        <button
+          class="px-5 py-2.5 bg-[#c8410a] text-white text-sm font-semibold hover:bg-[#a8340a] transition-colors"
+          >Calcular probabilidade →</button
+        >
+        <div class="font-mono text-xs text-[#7a6e62] mt-3">
+          Por terminar
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---- CARD HOVER ----
+    const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+    if (!isTouchDevice) {
+      document.querySelectorAll(".course-card").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          (card.querySelector(".card-underline") as HTMLElement).style.width =
+            "100%";
+          (card as HTMLElement).style.background = "#f0ebe0";
+        });
+        card.addEventListener("mouseleave", () => {
+          (card.querySelector(".card-underline") as HTMLElement).style.width =
+            "0";
+          (card as HTMLElement).style.background = "#faf7f2";
+        });
+      });
+    }
+
+    // ---- SEARCH ----
+    const input = document.getElementById("searchInput") as HTMLInputElement;
+    const gradeRange = document.getElementById(
+      "gradeRange",
+    ) as HTMLInputElement;
+    const gradeDisplay = document.getElementById("gradeDisplay")!;
+    const count = document.getElementById("resultsCount")!;
+    const grid = document.getElementById("courseGrid")!;
+    const cards = Array.from(
+      grid.querySelectorAll(".course-card"),
+    ) as HTMLElement[];
+
+    gradeRange.addEventListener("input", () => {
+      const val = parseFloat(gradeRange.value) / 10;
+      gradeDisplay.textContent = val.toFixed(1).replace(".", ",");
+      filterCards();
+    });
+
+    function filterCards() {
+      const words = input.value
+        .toLowerCase()
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+      const maxGrade = parseFloat(gradeRange.value);
+      const cidade = (
+        document.getElementById("filterCidade") as HTMLSelectElement
+      ).value.toLowerCase();
+      const grau = (document.getElementById("filterGrau") as HTMLSelectElement)
+        .value;
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const text = card.textContent?.toLowerCase() || "";
+        const nota = parseFloat(card.dataset.nota || "0");
+        const matchWords =
+          words.length === 0 || words.every((w) => text.includes(w));
+        const matchGrade = nota <= maxGrade;
+        const matchCidade = !cidade || text.includes(cidade);
+        const grauVal = (card.dataset.grau || "").toLowerCase();
+        const matchGrau =
+          !grau ||
+          (grau === "licenciatura" &&
+            (grauVal === "l1" || grauVal.includes("licenciatura"))) ||
+          (grau === "mestrado integrado" &&
+            (grauVal === "mi" || grauVal.includes("mestrado integrado"))) ||
+          (grau === "preparatório" &&
+            (grauVal === "pm" ||
+              grauVal === "pl" ||
+              grauVal.includes("preparatório")));
+        const show = matchWords && matchGrade && matchCidade && matchGrau;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      count.textContent = `A mostrar ${visible} cursos`;
+    }
+
+    input.addEventListener("input", filterCards);
+    document
+      .getElementById("filterCidade")
+      ?.addEventListener("change", filterCards);
+    document
+      .getElementById("filterGrau")
+      ?.addEventListener("change", filterCards);
+    document.getElementById("searchBtn")?.addEventListener("click", () => {
+      document
+        .getElementById("courseGrid")
+        ?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    filterCards();
+
+    // ---- SORT ----
+    const sortDirection: Record<string, string> = {
+      grade: "desc",
+      az: "asc",
+      trend: "desc",
+    };
+
+    document.querySelectorAll(".sort-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const sort = (btn as HTMLElement).dataset.sort as string;
+
+        if (btn.classList.contains("bg-[#0e0e0e]")) {
+          sortDirection[sort] = sortDirection[sort] === "desc" ? "asc" : "desc";
+        }
+
+        const gradeArrow = document.querySelector(".sort-arrow-grade")!;
+        const azArrow = document.querySelector(".sort-arrow-az")!;
+        const trendArrow = document.querySelector(".sort-arrow-trend")!;
+        gradeArrow.textContent = sortDirection["grade"] === "desc" ? "↓" : "↑";
+        azArrow.textContent = sortDirection["az"] === "asc" ? "↓" : "↑";
+        trendArrow.textContent = sortDirection["trend"] === "desc" ? "↓" : "↑";
+
+        document.querySelectorAll(".sort-btn").forEach((b) => {
+          b.classList.remove(
+            "bg-[#0e0e0e]",
+            "text-[#f5f0e8]",
+            "border-[#0e0e0e]",
+          );
+          b.classList.add("text-[#7a7060]");
+        });
+        btn.classList.add("bg-[#0e0e0e]", "text-[#f5f0e8]", "border-[#0e0e0e]");
+
+        const dir = sortDirection[sort];
+        const sorted = [...cards].sort((a, b) => {
+          if (sort === "grade") {
+            const diff =
+              parseFloat(b.dataset.nota || "0") -
+              parseFloat(a.dataset.nota || "0");
+            return dir === "desc" ? diff : -diff;
+          }
+          if (sort === "trend") {
+            const diffA = parseFloat(a.dataset.diff || "0");
+            const diffB = parseFloat(b.dataset.diff || "0");
+            return dir === "desc" ? diffB - diffA : diffA - diffB;
+          }
+          const diff = (a.dataset.curso || "").localeCompare(
+            b.dataset.curso || "",
+          );
+          return dir === "asc" ? diff : -diff;
+        });
+        sorted.forEach((c) => grid.appendChild(c));
+      });
+    });
+
+    // ---- DETAIL PANEL ----
+    const overlay = document.getElementById("detailOverlay")!;
+
+    function openDetail(courseJson: string) {
+      const course = JSON.parse(courseJson);
+      const nota2025 = course.notas[2025]
+        ? (course.notas[2025] / 10).toFixed(1).replace(".", ",")
+        : "—";
+      const allNotas = Object.values(course.notas) as number[];
+      const minNota = allNotas.length
+        ? (Math.min(...allNotas) / 10).toFixed(1).replace(".", ",")
+        : "—";
+
+      document.getElementById("d-area")!.textContent = course.universidade
+        .split(" - ")[0]
+        .trim();
+      document.getElementById("d-title")!.textContent = course.curso;
+      document.getElementById("d-uni")!.textContent = course.universidade;
+      document.getElementById("d-grade")!.textContent = nota2025;
+      document.getElementById("d-min")!.textContent = minNota;
+      document.getElementById("d-vagas")!.textContent = course.vagas;
+
+      const container = document.getElementById("chartContainer")!;
+      const years = Object.keys(course.notas).sort();
+      const vals = years.map((y) => course.notas[y] / 10);
+      const maxVal = Math.max(...vals);
+      const minVal = Math.min(...vals) - 1;
+      container.innerHTML = years
+        .map((y, i) => {
+          const h =
+            Math.round(((vals[i] - minVal) / (maxVal - minVal + 0.5)) * 80) +
+            10;
+          return `<div class="flex-1 flex flex-col items-center gap-1">
+          <div class="font-mono text-[9px] text-[#7a7060]">${vals[i].toFixed(1).replace(".", ",")}</div>
+          <div class="w-full bg-[#d4cdb8] hover:bg-[#c8410a] transition-colors" style="height:${h}px"></div>
+          <div class="font-mono text-[9px] text-[#7a7060]">'${y.slice(2)}</div>
+        </div>`;
+        })
+        .join("");
+
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+    }
+
+    function closeDetail() {
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+    }
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeDetail();
+    });
+
+    (window as any).openDetail = openDetail;
+    (window as any).closeDetail = closeDetail;
+  </script>
+</Layout>
