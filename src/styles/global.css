@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .font-display {
@@ -12,5 +12,5 @@ body {
 }
 
 .font-mono {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Playfair Display', serif;
 }
